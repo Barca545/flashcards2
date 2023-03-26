@@ -1,31 +1,29 @@
 import React, {useState } from 'react';
 
-export function NavDropdown({category,pages}:any){
-  const [showMenu, setShowMenu] = useState(false)
-
-  function DropdownContent(pages:any){
-    for (const [name, link] of Object.entries(pages)) {
-      return (
-            <li className='dropdown-menu'>
-              <a href={`${link}`}>
-                <div className='nav-item'>{`${name}`}</div>
-              </a>
-            </li>)}}
-  return (
-    <ul 
-      className='dropdown-container'
-      onMouseEnter={() => {setShowMenu(true); console.log(pages)}}>
-      <div>
-        {category}
+export function NavDropdown(props:any){
+  return(
+    <div className='dropdown-container'>
+      <h2>Dropdown</h2>
+      <div className='dropdown-menu'>
+        {props.pages?.map((pages:any) =>
+          <div className='dropdown-menu-box'>
+            <a href={`${pages.link}`}>
+              {`${pages.name}`}
+            </a>
+          </div>)}
       </div>
-        {showMenu && <DropdownContent page={pages}/>}     
-    </ul>
-)}  
+    </div>
+  )
+}
 
-export function NavButton(page:any){
+export function NavButton(props:any){
   return (
-    <div className='dropdown-menu'>
-      <a href={`${page.link}`}>
-        <div className='nav-item'>{`${page.name}`}</div>
-      </a>
-    </div>)}
+      props.page?.map((page:any) => 
+      <div className='nav-button'>
+        <a href={`${page.link}`}>
+          {`${page.name}`}
+        </a>
+      </div>
+      )
+  )
+}
