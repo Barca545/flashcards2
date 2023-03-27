@@ -3,7 +3,7 @@ import React, {useState } from 'react';
 export function NavDropdown(props:any){
   return(
     <div className='dropdown-container'>
-      <h2>Dropdown</h2>
+      <h2>FLASHCARDS</h2>
       <div className='dropdown-menu'>
         {props.pages?.map((pages:any) =>
           <div className='dropdown-menu-box'>

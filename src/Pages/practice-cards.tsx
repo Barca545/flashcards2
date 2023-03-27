@@ -11,8 +11,10 @@ function CardWrapper(props:any){
   var card = cards[id]
   var front = card['front']
   var back = card["back"]
+  var flagged = card["flagged"]
   const [viewed, timesViewed] = useState(card["viewed"]);
   const [wrong, timesWrong] = useState(card["wrong"]);
+  const [flag, flager] = useState(flagged)
   function ShowCard(props:any){
     const [flip, setFlip] = useState(false);
     const showSide = (flipped:boolean) => {
@@ -24,13 +26,8 @@ function CardWrapper(props:any){
       }
     }
     return(
-      <div className='card-side-content'>
-        <div className='card-side-text'>
-          {showSide(flip)}
-        </div>
-        <div className='card-side-buttons'>
-          <input type={'button'} value='FLIP' onClick={() => setFlip(!flip)}/>
-        </div>
+      <div className='card-side-content' onClick={() => setFlip(!flip)}>
+        {showSide(flip)}
       </div>
     );
   }
@@ -56,21 +53,47 @@ function CardWrapper(props:any){
         <input type={'button'} value='FINISH' onClick={props.onClose}/>
       </div>
       );}
+  
+  function FlagBox(props:any){
+    return(
+      <div>
+        <input type={'button'} value='FLAG CARD' onClick={()=>flager(!flagged)}/>
+      </div>
+    )
+  }
+  
+  /// something with useRef https://www.w3schools.com/react/react_useref.asp
+  function CardTimer(props:any){
+    const [time,setTime]= useState(props.start)
+    setInterval(() => {
+      if (time>0){setTime(time-1)}
+    },1000)
+    return(
+      <div className='timer'>
+        <span id='seconds'>
+          {time}
+        </span>
+      </div>
+    )
+  }
+  
   return (
-    <div>
-      <ShowCard front={front} back={back}/>
-      <CardNavButtons/>
+    <div className='card-wrapper'>
+      <span className='card-holder'><ShowCard front={front} back={back}/></span>
+      <span className='nav-holder'><CardNavButtons/></span>
+      <span className='widgets'>
+        <FlagBox/>
+        <CardTimer start={10}/>
+      </span>
     </div>
   );
 }
 
-export default function DisplayCard(props: any) {  
-  if (!props.show) {return null }
+
+
+export default function PracticeCard(props:any){
   return(
-    <div className='card-side'>
-      <div className='card-side-display'>
-        <CardWrapper onClose={props.onClose}/>
-      </div>
-    </div>
-    );
+    <CardWrapper/>
+    )
+
   }

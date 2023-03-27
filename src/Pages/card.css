@@ -5,7 +5,6 @@
   bottom: 0;
   top: 0;
   background-color: white;
-  display: flex;
   align-items: center;
   justify-content: center;  
 }
@@ -20,12 +19,31 @@
 
 .make-card {
   position: fixed; 
-  left: 0; 
-  right: 0;
-  bottom: 0;
-  top: 0;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card-wrapper{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  align-items: center;
+}
+
+.card-holder{
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+.nav-holder{
+  grid-column-start: 2;
+  grid-row-start: 4;
+}
+
+.widgets{
+  grid-column-start: 3;
+  grid-row-start: 3;
 }

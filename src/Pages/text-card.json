@@ -1,7 +1,7 @@
 {
-    "30303":{"front": "Jarvan IV", "back": "550", "viewed": 0, "wrong" : 0},
-    "30402":{"front": "Elise", "back": "570", "viewed": 0, "wrong" : 0},
-    "23423":{"front": "Garen", "back": "2141", "viewed": 0, "wrong" : 0},
-    "77787":{"front": "WW", "back": "998", "viewed": 0, "wrong" : 0},
-    "64544":{"front": "Vayne", "back": "656", "viewed": 0, "wrong" : 0} 
+    "30303":{"front": "Jarvan IV", "back": "550", "viewed": 0, "wrong" : 0, "flagged":"false"},
+    "30402":{"front": "Elise", "back": "570", "viewed": 0, "wrong" : 0, "flagged":"false"},
+    "23423":{"front": "Garen", "back": "2141", "viewed": 0, "wrong" : 0, "flagged":"false"},
+    "77787":{"front": "WW", "back": "998", "viewed": 0, "wrong" : 0, "flagged":"false"},
+    "64544":{"front": "Vayne", "back": "656", "viewed": 0, "wrong" : 0, "flagged":"false"} 
 } 

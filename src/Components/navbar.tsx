@@ -3,11 +3,10 @@ import {NavDropdown, NavButton} from './navbar-elements';
 import './nav-elements.css'
 
 const cardpages =[ 
-  {name:'Make Cards', link: './Pages/video-notes'},
-  {name:'Practice Cards', link: './Pages/practice-cards'}
-];
+  {name:'Make Cards', link: 'Pages/make-cards'},
+  {name:'Practice Cards', link: './Pages/practice-cards'}];
 
-const videopage = [{name:'Make Cards', link: './Pages/video-notes'}]
+const videopage = [{name:'Video Notes', link: './Pages/video-notes'}]
 
 export default function NavBar(){
   return(
