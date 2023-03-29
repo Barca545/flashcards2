@@ -63,30 +63,33 @@ function CardWrapper(props:any){
   }
   
   function CardTimer(props:any){
-    const [startTime, setStart] = useState(props.start)
+    const [startTime, setStart] = useState(0)
     const [now, setNow] = useState(0)
     const timeRef = useRef(0)
     
-    let secondsPassed = 0 
+    let secondsPassed = 0
     if (startTime != 0 && now != 0) {
       secondsPassed = (now-startTime) / 1000;
     }
     
-    let time = props.start-secondsPassed
+    let timeRemaining = props.start
+    
+    if (secondsPassed<props.start) 
+    {timeRemaining = props.start-secondsPassed}
+    else{timeRemaining=0}
 
     const start = () => {
-      if(30>secondsPassed){
-        setStart(Date.now())
-        clearInterval(timeRef.current)
-        timeRef.current = window.setInterval(() => {{setNow(Date.now())}},1000) ///IDK why TS dislikes this added window but I think this is bad
-      }
-      else{clearInterval(timeRef.current)}
+      setStart(Date.now())
+      clearInterval(timeRef.current)
+      timeRef.current = window.setInterval(() => {setNow(Date.now())},1000) ///IDK why TS dislikes this added window but I think this is bad
     }
     
     return(
       <div className='timer'>
         <input type="button" value={'Start'} onClick={start}/>
-        {time.toFixed(0)}
+        <div className='timer-display'>
+          {timeRemaining.toFixed(0).padStart(2, '0')}
+        </div>
       </div>
     )
   }
