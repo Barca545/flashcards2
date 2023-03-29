@@ -62,6 +62,8 @@ function CardWrapper(props:any){
     )
   }
   
+  /// Use useEffect to link this to the cards so a new one starts each time a new card starts 
+  ///make a drop down to select the timer's duration
   function CardTimer(props:any){
     const [startTime, setStart] = useState(0)
     const [now, setNow] = useState(0)

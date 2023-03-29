@@ -33,6 +33,7 @@
   align-items: center;
 }
 
+/* use this to make the card flip on click https://www.w3schools.com/howto/howto_css_flip_card.asp */
 .card-holder{
   grid-column-start: 2;
   grid-row-start: 3;
@@ -48,3 +49,10 @@
   grid-row-start: 3;
 }
 
+.timer-display{
+  color: black;
+  font-family: 'Lucida Sans';
+  font-size: 50px;
+  border-style: solid;
+  margin: 5px;
+}
