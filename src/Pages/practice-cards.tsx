@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import './card.css';
 import * as deck from'./text-card.json';
 
@@ -49,7 +49,7 @@ function CardWrapper(props:any){
         <input type={'button'} value='BACK' onClick={()=>setId(-1)}/>
         <input type={'button'} value='RIGHT' onClick={()=>answerValue(true)}/>
         <input type={'button'} value='WRONG' onClick={()=>answerValue(false)}/>
-        <input type={'button'} value='SHUFFLE'/>
+        <input type={'button'} value='SHUFFLE'/> 
         <input type={'button'} value='FINISH' onClick={props.onClose}/>
       </div>
       );}
@@ -62,17 +62,31 @@ function CardWrapper(props:any){
     )
   }
   
-  /// something with useRef https://www.w3schools.com/react/react_useref.asp
   function CardTimer(props:any){
-    const [time,setTime]= useState(props.start)
-    setInterval(() => {
-      if (time>0){setTime(time-1)}
-    },1000)
+    const [startTime, setStart] = useState(props.start)
+    const [now, setNow] = useState(0)
+    const timeRef = useRef(0)
+    
+    let secondsPassed = 0 
+    if (startTime != 0 && now != 0) {
+      secondsPassed = (now-startTime) / 1000;
+    }
+    
+    let time = props.start-secondsPassed
+
+    const start = () => {
+      if(30>secondsPassed){
+        setStart(Date.now())
+        clearInterval(timeRef.current)
+        timeRef.current = window.setInterval(() => {{setNow(Date.now())}},1000) ///IDK why TS dislikes this added window but I think this is bad
+      }
+      else{clearInterval(timeRef.current)}
+    }
+    
     return(
       <div className='timer'>
-        <span id='seconds'>
-          {time}
-        </span>
+        <input type="button" value={'Start'} onClick={start}/>
+        {time.toFixed(0)}
       </div>
     )
   }
@@ -83,17 +97,14 @@ function CardWrapper(props:any){
       <span className='nav-holder'><CardNavButtons/></span>
       <span className='widgets'>
         <FlagBox/>
-        <CardTimer start={10}/>
+        <CardTimer start={30}/>
       </span>
     </div>
   );
 }
 
-
-
-export default function PracticeCard(props:any){
+export default function PracticeCard(){
   return(
     <CardWrapper/>
     )
-
   }
