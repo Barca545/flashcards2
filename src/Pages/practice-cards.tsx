@@ -89,7 +89,7 @@ function CardWrapper(props:any){
     
     return(
       <div className='timer'>
-        <input type="button" value={'Start'}/>
+        <input type="button" value={'need start event'}/>
         <div className='timer-display'>
           {timeRemaining.toFixed(0).padStart(2, '0')}
         </div>
