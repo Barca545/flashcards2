@@ -11,12 +11,12 @@ function CardWrapper(props:any){
   var card = cards[id]
   var front = card['front']
   var back = card["back"]
-  var flagged = card["flagged"]
   const [viewed, timesViewed] = useState(card["viewed"]);
   const [wrong, timesWrong] = useState(card["wrong"]);
-  const [flag, flager] = useState(flagged)
+  const [flag, flager] = useState(card["flagged"])
+  const [flip, setFlip] = useState(false);
+  
   function ShowCard(props:any){
-    const [flip, setFlip] = useState(false);
     const showSide = (flipped:boolean) => {
       if (flipped === true){
         return props.back
@@ -57,13 +57,14 @@ function CardWrapper(props:any){
   function FlagBox(props:any){
     return(
       <div>
-        <input type={'button'} value='FLAG CARD' onClick={()=>flager(!flagged)}/>
+        <input type={'button'} value='FLAG CARD' onClick={()=>flager(!flag)}/>
       </div>
     )
   }
   
   /// Use useEffect to link this to the cards so a new one starts each time a new card starts 
   ///make a drop down to select the timer's duration
+  /// Should stop onFlip
   function CardTimer(props:any){
     const [startTime, setStart] = useState(0)
     const [now, setNow] = useState(0)
@@ -88,7 +89,7 @@ function CardWrapper(props:any){
     
     return(
       <div className='timer'>
-        <input type="button" value={'Start'} onClick={start}/>
+        <input type="button" value={'Start'}/>
         <div className='timer-display'>
           {timeRemaining.toFixed(0).padStart(2, '0')}
         </div>
