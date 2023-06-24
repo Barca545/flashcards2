@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import PracticeCard from './Pages/practice-cards';
+import PracticeCard from './Pages/card/practice-cards';
 import NavBar from './Components/navbar'
 
   export default function App() {
